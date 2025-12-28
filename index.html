@@ -1,0 +1,1619 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🇰🇷 Học Tiếng Hàn Cùng Nhau </title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #E91E63;
+            --secondary: #9C27B0;
+            --accent: #FF6B6B;
+            --light: #FFF5F8;
+            --dark: #333;
+            --gradient: linear-gradient(135deg, #E91E63, #9C27B0);
+        }
+
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background: var(--light);
+            min-height: 100vh;
+        }
+
+        /* Navigation */
+        nav {
+            background: var(--gradient);
+            padding: 1rem 2rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(233, 30, 99, 0.3);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .logo span {
+            font-size: 2rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .nav-links button {
+            background: rgba(255,255,255,0.2);
+            border: none;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: inherit;
+        }
+
+        .nav-links button:hover,
+        .nav-links button.active {
+            background: white;
+            color: var(--primary);
+        }
+
+        /* Main Content */
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 100px 20px 40px;
+        }
+
+        .section {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Welcome Section */
+        .welcome {
+            text-align: center;
+            padding: 3rem;
+            background: white;
+            border-radius: 30px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+
+        .welcome h1 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .welcome .korean-text {
+            font-size: 3rem;
+            color: var(--secondary);
+            margin: 1rem 0;
+        }
+
+        .welcome p {
+            color: #666;
+            line-height: 1.8;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .heart-message {
+            background: var(--gradient);
+            color: white;
+            padding: 2rem;
+            border-radius: 20px;
+            margin-top: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .heart-message::before {
+            content: "💕";
+            position: absolute;
+            font-size: 5rem;
+            opacity: 0.2;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .floating-hearts {
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        /* Stats */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-card i {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-card h3 {
+            color: var(--dark);
+            font-size: 1.5rem;
+        }
+
+        .stat-card p {
+            color: #888;
+            font-size: 0.9rem;
+        }
+
+        /* Hangul Section */
+        .hangul-tabs {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .hangul-tabs button {
+            padding: 1rem 2rem;
+            border: none;
+            background: white;
+            border-radius: 15px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .hangul-tabs button.active {
+            background: var(--gradient);
+            color: white;
+        }
+
+        .hangul-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            gap: 1rem;
+        }
+
+        .hangul-card {
+            background: white;
+            border-radius: 20px;
+            padding: 1.5rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hangul-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient);
+            transform: scaleX(0);
+            transition: transform 0.3s;
+        }
+
+        .hangul-card:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 10px 30px rgba(233, 30, 99, 0.2);
+        }
+
+        .hangul-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .hangul-card .letter {
+            font-size: 3rem;
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        .hangul-card .romanization {
+            color: #888;
+            margin-top: 0.5rem;
+        }
+
+        .hangul-card .example {
+            font-size: 0.85rem;
+            color: var(--secondary);
+            margin-top: 0.5rem;
+        }
+
+        /* Vocabulary Section */
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .category-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+
+        .category-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(233, 30, 99, 0.2);
+        }
+
+        .category-card.active {
+            background: var(--gradient);
+            color: white;
+        }
+
+        .category-card i {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .category-card.active i {
+            color: white;
+        }
+
+        .vocab-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1rem;
+        }
+
+        .vocab-card {
+            background: white;
+            border-radius: 15px;
+            padding: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            cursor: pointer;
+        }
+
+        .vocab-card:hover {
+            transform: scale(1.02);
+            box-shadow: 0 8px 25px rgba(233, 30, 99, 0.15);
+        }
+
+        .vocab-card .korean {
+            font-size: 1.8rem;
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        .vocab-card .info h4 {
+            color: var(--dark);
+        }
+
+        .vocab-card .info p {
+            color: #888;
+            font-size: 0.9rem;
+        }
+
+        .vocab-card .speaker {
+            margin-left: auto;
+            width: 45px;
+            height: 45px;
+            background: var(--gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            transition: transform 0.3s;
+        }
+
+        .vocab-card:hover .speaker {
+            transform: scale(1.1);
+        }
+
+        /* Flashcard Section */
+        .flashcard-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .flashcard {
+            width: 350px;
+            height: 250px;
+            perspective: 1000px;
+            cursor: pointer;
+        }
+
+        .flashcard-inner {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.6s;
+        }
+
+        .flashcard.flipped .flashcard-inner {
+            transform: rotateY(180deg);
+        }
+
+        .flashcard-front,
+        .flashcard-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 25px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+        }
+
+        .flashcard-front {
+            background: var(--gradient);
+            color: white;
+        }
+
+        .flashcard-front .korean {
+            font-size: 4rem;
+            font-weight: 700;
+        }
+
+        .flashcard-front .hint {
+            margin-top: 1rem;
+            opacity: 0.8;
+        }
+
+        .flashcard-back {
+            background: white;
+            transform: rotateY(180deg);
+        }
+
+        .flashcard-back .meaning {
+            font-size: 2rem;
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .flashcard-back .romanization {
+            color: #888;
+            margin-top: 0.5rem;
+        }
+
+        .flashcard-controls {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .flashcard-controls button {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 15px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .btn-prev,
+        .btn-next {
+            background: white;
+            color: var(--primary);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .btn-prev:hover,
+        .btn-next:hover {
+            background: var(--gradient);
+            color: white;
+        }
+
+        .flashcard-progress {
+            text-align: center;
+            color: #888;
+        }
+
+        /* Quiz Section */
+        .quiz-container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .quiz-header {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            text-align: center;
+            margin-bottom: 2rem;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+
+        .quiz-progress {
+            height: 8px;
+            background: #eee;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-top: 1rem;
+        }
+
+        .quiz-progress-bar {
+            height: 100%;
+            background: var(--gradient);
+            transition: width 0.3s;
+        }
+
+        .quiz-question {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+
+        .quiz-question .korean {
+            font-size: 4rem;
+            color: var(--primary);
+            margin-bottom: 2rem;
+        }
+
+        .quiz-options {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .quiz-option {
+            padding: 1.2rem;
+            border: 2px solid #eee;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.3s;
+            background: white;
+            font-size: 1.1rem;
+        }
+
+        .quiz-option:hover {
+            border-color: var(--primary);
+            background: var(--light);
+        }
+
+        .quiz-option.correct {
+            background: #4CAF50;
+            color: white;
+            border-color: #4CAF50;
+        }
+
+        .quiz-option.wrong {
+            background: #f44336;
+            color: white;
+            border-color: #f44336;
+        }
+
+        .quiz-result {
+            text-align: center;
+            padding: 3rem;
+        }
+
+        .quiz-result h2 {
+            font-size: 2rem;
+            color: var(--primary);
+        }
+
+        .quiz-result .score {
+            font-size: 5rem;
+            font-weight: 700;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .quiz-result .message {
+            font-size: 1.2rem;
+            color: #666;
+            margin: 1rem 0;
+        }
+
+        .btn-restart {
+            padding: 1rem 3rem;
+            background: var(--gradient);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .btn-restart:hover {
+            transform: scale(1.05);
+        }
+
+        /* Phrases Section */
+        .phrase-categories {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .phrase-cat-btn {
+            padding: 0.8rem 1.5rem;
+            border: none;
+            background: white;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+        }
+
+        .phrase-cat-btn.active {
+            background: var(--gradient);
+            color: white;
+        }
+
+        .phrase-list {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .phrase-card {
+            background: white;
+            border-radius: 20px;
+            padding: 1.5rem 2rem;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 1rem;
+            align-items: center;
+            transition: all 0.3s;
+        }
+
+        .phrase-card:hover {
+            transform: translateX(10px);
+            box-shadow: 0 8px 25px rgba(233, 30, 99, 0.15);
+        }
+
+        .phrase-card .korean {
+            font-size: 1.5rem;
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .phrase-card .romanization {
+            color: var(--secondary);
+            font-style: italic;
+        }
+
+        .phrase-card .meaning {
+            color: #666;
+        }
+
+        .phrase-card .play-btn {
+            width: 50px;
+            height: 50px;
+            background: var(--gradient);
+            border: none;
+            border-radius: 50%;
+            color: white;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: transform 0.3s;
+        }
+
+        .phrase-card .play-btn:hover {
+            transform: scale(1.1);
+        }
+
+        /* Section Titles */
+        .section-title {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .section-title h2 {
+            font-size: 2rem;
+            color: var(--dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .section-title p {
+            color: #888;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .welcome h1 {
+                font-size: 1.8rem;
+            }
+
+            .welcome .korean-text {
+                font-size: 2rem;
+            }
+
+            .flashcard {
+                width: 300px;
+                height: 220px;
+            }
+
+            .flashcard-front .korean {
+                font-size: 3rem;
+            }
+        }
+
+        /* Achievement Popup */
+        .achievement-popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            background: white;
+            padding: 3rem;
+            border-radius: 25px;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            z-index: 10000;
+            transition: transform 0.3s;
+        }
+
+        .achievement-popup.show {
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        .achievement-popup .icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+
+        .achievement-popup h3 {
+            color: var(--primary);
+            font-size: 1.5rem;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 9999;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s;
+        }
+
+        .overlay.show {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        /* Daily Streak */
+        .streak-badge {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--gradient);
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            box-shadow: 0 5px 20px rgba(233, 30, 99, 0.4);
+            cursor: pointer;
+            transition: transform 0.3s;
+            z-index: 100;
+        }
+
+        .streak-badge:hover {
+            transform: scale(1.05);
+        }
+
+        .streak-badge i {
+            font-size: 1.5rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="#" class="logo"><span>🇰🇷</span> HanGugeo</a>
+            <div class="nav-links">
+                <button class="active" onclick="showSection('home')">
+                    <i class="fas fa-home"></i> Trang chủ
+                </button>
+                <button onclick="showSection('hangul')">
+                    <i class="fas fa-font"></i> Hangul
+                </button>
+                <button onclick="showSection('vocab')">
+                    <i class="fas fa-book"></i> Từ vựng
+                </button>
+                <button onclick="showSection('flashcard')">
+                    <i class="fas fa-clone"></i> Flashcard
+                </button>
+                <button onclick="showSection('quiz')">
+                    <i class="fas fa-question-circle"></i> Quiz
+                </button>
+                <button onclick="showSection('phrases')">
+                    <i class="fas fa-comments"></i> Mẫu câu
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Home Section -->
+        <section id="home" class="section active">
+            <div class="welcome">
+                <h1>Chào mừng đến với hành trình học tiếng Hàn! 🎉</h1>
+                <div class="korean-text">안녕하세요!</div>
+                <p>
+                    HELLO ANH HUY
+                </p>
+                <div class="heart-message">
+                    <h3>💝 Lời nhắn từ người tạo:</h3>
+                    <p>"Tặng bạn website này để chúng ta có thể học tiếng Hàn cùng nhau. 
+                    Hy vọng một ngày nào đó chúng mình sẽ du lịch Hàn Quốc và tự tin giao tiếp! 화이팅! (Fighting!)"</p>
+                </div>
+            </div>
+
+            <div class="stats">
+                <div class="stat-card">
+                    <i class="fas fa-fire"></i>
+                    <h3 id="streak-count">0</h3>
+                    <p>Ngày liên tiếp</p>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-graduation-cap"></i>
+                    <h3 id="words-learned">0</h3>
+                    <p>Từ đã học</p>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-star"></i>
+                    <h3 id="quiz-score">0</h3>
+                    <p>Điểm Quiz cao nhất</p>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-clock"></i>
+                    <h3 id="study-time">0</h3>
+                    <p>Phút học tập</p>
+                </div>
+            </div>
+
+            <div class="section-title">
+                <h2>🚀 Bắt đầu ngay hôm nay!</h2>
+                <p>Chọn một bài học để bắt đầu hành trình của bạn</p>
+            </div>
+
+            <div class="category-grid">
+                <div class="category-card" onclick="showSection('hangul')">
+                    <i class="fas fa-language"></i>
+                    <h3>Bảng chữ cái Hangul</h3>
+                    <p>Nền tảng quan trọng nhất</p>
+                </div>
+                <div class="category-card" onclick="showSection('vocab')">
+                    <i class="fas fa-book-open"></i>
+                    <h3>Từ vựng cơ bản</h3>
+                    <p>Học từ theo chủ đề</p>
+                </div>
+                <div class="category-card" onclick="showSection('flashcard')">
+                    <i class="fas fa-brain"></i>
+                    <h3>Luyện tập Flashcard</h3>
+                    <p>Ghi nhớ hiệu quả</p>
+                </div>
+                <div class="category-card" onclick="showSection('quiz')">
+                    <i class="fas fa-trophy"></i>
+                    <h3>Kiểm tra Quiz</h3>
+                    <p>Test kiến thức của bạn</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Hangul Section -->
+        <section id="hangul" class="section">
+            <div class="section-title">
+                <h2>📝 Bảng chữ cái Hangul (한글)</h2>
+                <p>Click vào mỗi chữ để nghe phát âm!</p>
+            </div>
+
+            <div class="hangul-tabs">
+                <button class="active" onclick="showHangulTab('vowels')">Nguyên âm (모음)</button>
+                <button onclick="showHangulTab('consonants')">Phụ âm (자음)</button>
+                <button onclick="showHangulTab('double')">Phụ âm kép (쌍자음)</button>
+            </div>
+
+            <div id="hangul-vowels" class="hangul-grid">
+                <!-- Vowels will be rendered by JS -->
+            </div>
+
+            <div id="hangul-consonants" class="hangul-grid" style="display: none;">
+                <!-- Consonants will be rendered by JS -->
+            </div>
+
+            <div id="hangul-double" class="hangul-grid" style="display: none;">
+                <!-- Double consonants will be rendered by JS -->
+            </div>
+        </section>
+
+        <!-- Vocabulary Section -->
+        <section id="vocab" class="section">
+            <div class="section-title">
+                <h2>📚 Từ vựng theo chủ đề</h2>
+                <p>Chọn chủ đề bạn muốn học</p>
+            </div>
+
+            <div class="category-grid" id="vocab-categories">
+                <!-- Categories will be rendered by JS -->
+            </div>
+
+            <div id="vocab-list" class="vocab-list">
+                <!-- Vocab cards will be rendered by JS -->
+            </div>
+        </section>
+
+        <!-- Flashcard Section -->
+        <section id="flashcard" class="section">
+            <div class="section-title">
+                <h2>🧠 Flashcard - Luyện tập ghi nhớ</h2>
+                <p>Click vào thẻ để lật và xem nghĩa!</p>
+            </div>
+
+            <div class="flashcard-container">
+                <div class="flashcard" id="flashcard" onclick="flipCard()">
+                    <div class="flashcard-inner">
+                        <div class="flashcard-front">
+                            <div class="korean" id="fc-korean">안녕</div>
+                            <div class="hint">Click để lật thẻ</div>
+                        </div>
+                        <div class="flashcard-back">
+                            <div class="meaning" id="fc-meaning">Xin chào</div>
+                            <div class="romanization" id="fc-roman">annyeong</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flashcard-progress">
+                    <span id="fc-current">1</span> / <span id="fc-total">10</span>
+                </div>
+
+                <div class="flashcard-controls">
+                    <button class="btn-prev" onclick="prevCard()">
+                        <i class="fas fa-arrow-left"></i> Trước
+                    </button>
+                    <button class="btn-next" onclick="nextCard()">
+                        Tiếp <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quiz Section -->
+        <section id="quiz" class="section">
+            <div class="section-title">
+                <h2>🏆 Quiz - Kiểm tra kiến thức</h2>
+                <p>Chọn đáp án đúng cho mỗi câu hỏi</p>
+            </div>
+
+            <div class="quiz-container">
+                <div class="quiz-header">
+                    <h3>Câu hỏi: <span id="quiz-question-num">1</span>/10</h3>
+                    <div class="quiz-progress">
+                        <div class="quiz-progress-bar" id="quiz-progress" style="width: 10%"></div>
+                    </div>
+                </div>
+
+                <div class="quiz-question" id="quiz-question">
+                    <!-- Quiz content will be rendered by JS -->
+                </div>
+
+                <div class="quiz-result" id="quiz-result" style="display: none;">
+                    <!-- Result will be shown here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Phrases Section -->
+        <section id="phrases" class="section">
+            <div class="section-title">
+                <h2>💬 Mẫu câu thường dùng</h2>
+                <p>Những câu giao tiếp hàng ngày</p>
+            </div>
+
+            <div class="phrase-categories">
+                <button class="phrase-cat-btn active" onclick="showPhraseCategory('greetings')">Chào hỏi</button>
+                <button class="phrase-cat-btn" onclick="showPhraseCategory('basic')">Cơ bản</button>
+                <button class="phrase-cat-btn" onclick="showPhraseCategory('shopping')">Mua sắm</button>
+                <button class="phrase-cat-btn" onclick="showPhraseCategory('restaurant')">Nhà hàng</button>
+                <button class="phrase-cat-btn" onclick="showPhraseCategory('love')">Tình yêu 💕</button>
+            </div>
+
+            <div id="phrase-list" class="phrase-list">
+                <!-- Phrases will be rendered by JS -->
+            </div>
+        </section>
+    </main>
+
+    <!-- Streak Badge -->
+    <div class="streak-badge" onclick="showAchievement()">
+        <i class="fas fa-fire"></i>
+        <span id="streak-badge-count">0 ngày</span>
+    </div>
+
+    <!-- Achievement Popup -->
+    <div class="overlay" id="overlay" onclick="hideAchievement()"></div>
+    <div class="achievement-popup" id="achievement">
+        <div class="icon">🎉</div>
+        <h3>Tuyệt vời!</h3>
+        <p>Bạn đã học <span id="achieve-days">0</span> ngày liên tiếp!</p>
+        <p>Tiếp tục phát huy nhé! 화이팅!</p>
+    </div>
+
+    <script>
+        // Data
+        const hangulData = {
+            vowels: [
+                { letter: 'ㅏ', romanization: 'a', example: '아빠 (appa) - Bố' },
+                { letter: 'ㅓ', romanization: 'eo', example: '어머니 (eomeoni) - Mẹ' },
+                { letter: 'ㅗ', romanization: 'o', example: '오빠 (oppa) - Anh trai' },
+                { letter: 'ㅜ', romanization: 'u', example: '우유 (uyu) - Sữa' },
+                { letter: 'ㅡ', romanization: 'eu', example: '으악 (euak) - Á!' },
+                { letter: 'ㅣ', romanization: 'i', example: '이름 (ireum) - Tên' },
+                { letter: 'ㅐ', romanization: 'ae', example: '개 (gae) - Chó' },
+                { letter: 'ㅔ', romanization: 'e', example: '네 (ne) - Vâng' },
+                { letter: 'ㅑ', romanization: 'ya', example: '야채 (yachae) - Rau' },
+                { letter: 'ㅕ', romanization: 'yeo', example: '여자 (yeoja) - Phụ nữ' },
+                { letter: 'ㅛ', romanization: 'yo', example: '요리 (yori) - Nấu ăn' },
+                { letter: 'ㅠ', romanization: 'yu', example: '유명 (yumyeong) - Nổi tiếng' },
+                { letter: 'ㅒ', romanization: 'yae', example: '얘기 (yaegi) - Câu chuyện' },
+                { letter: 'ㅖ', romanization: 'ye', example: '예쁘다 (yeppeuda) - Xinh đẹp' }
+            ],
+            consonants: [
+                { letter: 'ㄱ', romanization: 'g/k', example: '가방 (gabang) - Túi' },
+                { letter: 'ㄴ', romanization: 'n', example: '나 (na) - Tôi' },
+                { letter: 'ㄷ', romanization: 'd/t', example: '다리 (dari) - Chân' },
+                { letter: 'ㄹ', romanization: 'r/l', example: '라면 (ramyeon) - Mì' },
+                { letter: 'ㅁ', romanization: 'm', example: '물 (mul) - Nước' },
+                { letter: 'ㅂ', romanization: 'b/p', example: '밥 (bap) - Cơm' },
+                { letter: 'ㅅ', romanization: 's', example: '사랑 (sarang) - Tình yêu' },
+                { letter: 'ㅇ', romanization: 'ng/-', example: '아이 (ai) - Trẻ em' },
+                { letter: 'ㅈ', romanization: 'j', example: '자동차 (jadongcha) - Ô tô' },
+                { letter: 'ㅊ', romanization: 'ch', example: '친구 (chingu) - Bạn bè' },
+                { letter: 'ㅋ', romanization: 'k', example: '커피 (keopi) - Cà phê' },
+                { letter: 'ㅌ', romanization: 't', example: '토끼 (tokki) - Thỏ' },
+                { letter: 'ㅍ', romanization: 'p', example: '피자 (pija) - Pizza' },
+                { letter: 'ㅎ', romanization: 'h', example: '하늘 (haneul) - Bầu trời' }
+            ],
+            double: [
+                { letter: 'ㄲ', romanization: 'kk', example: '까치 (kkachi) - Chim ác là' },
+                { letter: 'ㄸ', romanization: 'tt', example: '딸기 (ttalgi) - Dâu tây' },
+                { letter: 'ㅃ', romanization: 'pp', example: '빵 (ppang) - Bánh mì' },
+                { letter: 'ㅆ', romanization: 'ss', example: '쓰다 (sseuda) - Viết' },
+                { letter: 'ㅉ', romanization: 'jj', example: '찌개 (jjigae) - Món hầm' }
+            ]
+        };
+
+        const vocabularyData = {
+            numbers: {
+                icon: 'fa-sort-numeric-up',
+                name: 'Số đếm',
+                words: [
+                    { korean: '하나', romanization: 'hana', meaning: 'Một (1)' },
+                    { korean: '둘', romanization: 'dul', meaning: 'Hai (2)' },
+                    { korean: '셋', romanization: 'set', meaning: 'Ba (3)' },
+                    { korean: '넷', romanization: 'net', meaning: 'Bốn (4)' },
+                    { korean: '다섯', romanization: 'daseot', meaning: 'Năm (5)' },
+                    { korean: '여섯', romanization: 'yeoseot', meaning: 'Sáu (6)' },
+                    { korean: '일곱', romanization: 'ilgop', meaning: 'Bảy (7)' },
+                    { korean: '여덟', romanization: 'yeodeol', meaning: 'Tám (8)' },
+                    { korean: '아홉', romanization: 'ahop', meaning: 'Chín (9)' },
+                    { korean: '열', romanization: 'yeol', meaning: 'Mười (10)' }
+                ]
+            },
+            family: {
+                icon: 'fa-users',
+                name: 'Gia đình',
+                words: [
+                    { korean: '가족', romanization: 'gajok', meaning: 'Gia đình' },
+                    { korean: '아버지', romanization: 'abeoji', meaning: 'Bố' },
+                    { korean: '어머니', romanization: 'eomeoni', meaning: 'Mẹ' },
+                    { korean: '오빠', romanization: 'oppa', meaning: 'Anh trai (nữ gọi)' },
+                    { korean: '언니', romanization: 'eonni', meaning: 'Chị gái (nữ gọi)' },
+                    { korean: '형', romanization: 'hyeong', meaning: 'Anh trai (nam gọi)' },
+                    { korean: '누나', romanization: 'nuna', meaning: 'Chị gái (nam gọi)' },
+                    { korean: '동생', romanization: 'dongsaeng', meaning: 'Em' },
+                    { korean: '할머니', romanization: 'halmeoni', meaning: 'Bà' },
+                    { korean: '할아버지', romanization: 'harabeoji', meaning: 'Ông' }
+                ]
+            },
+            food: {
+                icon: 'fa-utensils',
+                name: 'Đồ ăn',
+                words: [
+                    { korean: '밥', romanization: 'bap', meaning: 'Cơm' },
+                    { korean: '김치', romanization: 'kimchi', meaning: 'Kim chi' },
+                    { korean: '불고기', romanization: 'bulgogi', meaning: 'Thịt nướng' },
+                    { korean: '비빔밥', romanization: 'bibimbap', meaning: 'Cơm trộn' },
+                    { korean: '삼겹살', romanization: 'samgyeopsal', meaning: 'Thịt ba chỉ' },
+                    { korean: '떡볶이', romanization: 'tteokbokki', meaning: 'Bánh gạo cay' },
+                    { korean: '치킨', romanization: 'chikin', meaning: 'Gà rán' },
+                    { korean: '라면', romanization: 'ramyeon', meaning: 'Mì gói' },
+                    { korean: '김밥', romanization: 'gimbap', meaning: 'Cơm cuộn' },
+                    { korean: '순두부', romanization: 'sundubu', meaning: 'Đậu hũ non' }
+                ]
+            },
+            colors: {
+                icon: 'fa-palette',
+                name: 'Màu sắc',
+                words: [
+                    { korean: '빨간색', romanization: 'ppalgansaek', meaning: 'Màu đỏ' },
+                    { korean: '파란색', romanization: 'paransaek', meaning: 'Màu xanh dương' },
+                    { korean: '노란색', romanization: 'noransaek', meaning: 'Màu vàng' },
+                    { korean: '초록색', romanization: 'choroksaek', meaning: 'Màu xanh lá' },
+                    { korean: '검정색', romanization: 'geomjeongsaek', meaning: 'Màu đen' },
+                    { korean: '흰색', romanization: 'huinsaek', meaning: 'Màu trắng' },
+                    { korean: '분홍색', romanization: 'bunhongsaek', meaning: 'Màu hồng' },
+                    { korean: '보라색', romanization: 'borasaek', meaning: 'Màu tím' },
+                    { korean: '주황색', romanization: 'juhwangsaek', meaning: 'Màu cam' },
+                    { korean: '갈색', romanization: 'galsaek', meaning: 'Màu nâu' }
+                ]
+            },
+            animals: {
+                icon: 'fa-paw',
+                name: 'Động vật',
+                words: [
+                    { korean: '개', romanization: 'gae', meaning: 'Con chó' },
+                    { korean: '고양이', romanization: 'goyangi', meaning: 'Con mèo' },
+                    { korean: '토끼', romanization: 'tokki', meaning: 'Con thỏ' },
+                    { korean: '새', romanization: 'sae', meaning: 'Con chim' },
+                    { korean: '물고기', romanization: 'mulgogi', meaning: 'Con cá' },
+                    { korean: '호랑이', romanization: 'horangi', meaning: 'Con hổ' },
+                    { korean: '곰', romanization: 'gom', meaning: 'Con gấu' },
+                    { korean: '코끼리', romanization: 'kokkiri', meaning: 'Con voi' },
+                    { korean: '원숭이', romanization: 'wonsungi', meaning: 'Con khỉ' },
+                    { korean: '사자', romanization: 'saja', meaning: 'Con sư tử' }
+                ]
+            },
+            weather: {
+                icon: 'fa-cloud-sun',
+                name: 'Thời tiết',
+                words: [
+                    { korean: '날씨', romanization: 'nalssi', meaning: 'Thời tiết' },
+                    { korean: '맑다', romanization: 'makda', meaning: 'Trong xanh' },
+                    { korean: '흐리다', romanization: 'heurida', meaning: 'Âm u' },
+                    { korean: '비', romanization: 'bi', meaning: 'Mưa' },
+                    { korean: '눈', romanization: 'nun', meaning: 'Tuyết' },
+                    { korean: '바람', romanization: 'baram', meaning: 'Gió' },
+                    { korean: '덥다', romanization: 'deopda', meaning: 'Nóng' },
+                    { korean: '춥다', romanization: 'chupda', meaning: 'Lạnh' },
+                    { korean: '따뜻하다', romanization: 'ttatteutada', meaning: 'Ấm áp' },
+                    { korean: '시원하다', romanization: 'siwonhada', meaning: 'Mát mẻ' }
+                ]
+            }
+        };
+
+        const phrasesData = {
+            greetings: [
+                { korean: '안녕하세요', romanization: 'annyeonghaseyo', meaning: 'Xin chào (trang trọng)' },
+                { korean: '안녕', romanization: 'annyeong', meaning: 'Chào (thân mật)' },
+                { korean: '좋은 아침이에요', romanization: 'joeun achimieyo', meaning: 'Chào buổi sáng' },
+                { korean: '안녕히 가세요', romanization: 'annyeonghi gaseyo', meaning: 'Tạm biệt (người đi)' },
+                { korean: '안녕히 계세요', romanization: 'annyeonghi gyeseyo', meaning: 'Tạm biệt (người ở lại)' },
+                { korean: '잘 자요', romanization: 'jal jayo', meaning: 'Ngủ ngon' },
+                { korean: '처음 뵙겠습니다', romanization: 'cheoeum boepgesseumnida', meaning: 'Rất vui được gặp bạn' },
+                { korean: '오랜만이에요', romanization: 'oraenmanieyo', meaning: 'Lâu rồi không gặp' }
+            ],
+            basic: [
+                { korean: '감사합니다', romanization: 'gamsahamnida', meaning: 'Cảm ơn' },
+                { korean: '고마워요', romanization: 'gomawoyo', meaning: 'Cảm ơn (thân mật)' },
+                { korean: '죄송합니다', romanization: 'joesonghamnida', meaning: 'Xin lỗi' },
+                { korean: '괜찮아요', romanization: 'gwaenchanayo', meaning: 'Không sao' },
+                { korean: '네', romanization: 'ne', meaning: 'Vâng/Dạ' },
+                { korean: '아니요', romanization: 'aniyo', meaning: 'Không' },
+                { korean: '잠시만요', romanization: 'jamsimanyo', meaning: 'Xin đợi một chút' },
+                { korean: '도와주세요', romanization: 'dowajuseyo', meaning: 'Xin giúp tôi' }
+            ],
+            shopping: [
+                { korean: '이거 얼마예요?', romanization: 'igeo eolmayeyo?', meaning: 'Cái này bao nhiêu tiền?' },
+                { korean: '너무 비싸요', romanization: 'neomu bissayo', meaning: 'Đắt quá' },
+                { korean: '깎아 주세요', romanization: 'kkakka juseyo', meaning: 'Xin giảm giá' },
+                { korean: '이거 주세요', romanization: 'igeo juseyo', meaning: 'Cho tôi cái này' },
+                { korean: '카드 돼요?', romanization: 'kadeu dwaeyo?', meaning: 'Có thể dùng thẻ không?' },
+                { korean: '영수증 주세요', romanization: 'yeongsujeung juseyo', meaning: 'Cho tôi hóa đơn' },
+                { korean: '사이즈 있어요?', romanization: 'saijeu isseoyo?', meaning: 'Có size không?' },
+                { korean: '다른 색 있어요?', romanization: 'dareun saek isseoyo?', meaning: 'Có màu khác không?' }
+            ],
+            restaurant: [
+                { korean: '주문할게요', romanization: 'jumunhalgeyo', meaning: 'Tôi muốn gọi món' },
+                { korean: '메뉴판 주세요', romanization: 'menyupan juseyo', meaning: 'Cho tôi xem menu' },
+                { korean: '물 주세요', romanization: 'mul juseyo', meaning: 'Cho tôi nước' },
+                { korean: '맛있어요', romanization: 'masisseoyo', meaning: 'Ngon quá' },
+                { korean: '배불러요', romanization: 'baebulleoyo', meaning: 'No quá' },
+                { korean: '계산해 주세요', romanization: 'gyesanhae juseyo', meaning: 'Tính tiền' },
+                { korean: '맵지 않게 해주세요', romanization: 'maepji anke haejuseyo', meaning: 'Làm không cay' },
+                { korean: '잘 먹겠습니다', romanization: 'jal meokgesseumnida', meaning: 'Tôi sẽ ăn ngon' }
+            ],
+            love: [
+                { korean: '사랑해요', romanization: 'saranghaeyo', meaning: 'Tôi yêu bạn' },
+                { korean: '보고 싶어요', romanization: 'bogo sipeoyo', meaning: 'Tôi nhớ bạn' },
+                { korean: '좋아해요', romanization: 'joahaeyo', meaning: 'Tôi thích bạn' },
+                { korean: '예뻐요', romanization: 'yeppeoyo', meaning: 'Bạn đẹp quá' },
+                { korean: '멋있어요', romanization: 'meossisseoyo', meaning: 'Bạn tuyệt vời' },
+                { korean: '우리 같이 있자', romanization: 'uri gachi itja', meaning: 'Hãy ở bên nhau' },
+                { korean: '영원히 함께 해요', romanization: 'yeongwonhi hamkke haeyo', meaning: 'Hãy bên nhau mãi mãi' },
+                { korean: '내 친구야', romanization: 'nae chinguya', meaning: 'Bạn thân của tôi' }
+            ]
+        };
+
+        // State
+        let currentSection = 'home';
+        let currentVocabCategory = 'numbers';
+        let currentFlashcardIndex = 0;
+        let flashcardWords = [];
+        let quizQuestions = [];
+        let currentQuizIndex = 0;
+        let quizScore = 0;
+        let currentPhraseCategory = 'greetings';
+        
+        // Stats
+        let stats = {
+            streak: parseInt(localStorage.getItem('streak')) || 0,
+            wordsLearned: parseInt(localStorage.getItem('wordsLearned')) || 0,
+            quizHighScore: parseInt(localStorage.getItem('quizHighScore')) || 0,
+            studyTime: parseInt(localStorage.getItem('studyTime')) || 0,
+            lastVisit: localStorage.getItem('lastVisit') || null
+        };
+
+        // Check streak
+        function checkStreak() {
+            const today = new Date().toDateString();
+            const lastVisit = stats.lastVisit;
+            
+            if (lastVisit !== today) {
+                const yesterday = new Date();
+                yesterday.setDate(yesterday.getDate() - 1);
+                
+                if (lastVisit === yesterday.toDateString()) {
+                    stats.streak++;
+                } else if (lastVisit !== null) {
+                    stats.streak = 1;
+                } else {
+                    stats.streak = 1;
+                }
+                
+                localStorage.setItem('streak', stats.streak);
+                localStorage.setItem('lastVisit', today);
+            }
+            
+            updateStats();
+        }
+
+        // Update stats display
+        function updateStats() {
+            document.getElementById('streak-count').textContent = stats.streak;
+            document.getElementById('words-learned').textContent = stats.wordsLearned;
+            document.getElementById('quiz-score').textContent = stats.quizHighScore;
+            document.getElementById('study-time').textContent = stats.studyTime;
+            document.getElementById('streak-badge-count').textContent = stats.streak + ' ngày';
+            document.getElementById('achieve-days').textContent = stats.streak;
+        }
+
+        // Show section
+        function showSection(sectionId) {
+            document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+            document.getElementById(sectionId).classList.add('active');
+            
+            document.querySelectorAll('.nav-links button').forEach(b => b.classList.remove('active'));
+            event.target.closest('button')?.classList.add('active');
+            
+            currentSection = sectionId;
+            
+            if (sectionId === 'hangul') renderHangul();
+            if (sectionId === 'vocab') renderVocabCategories();
+            if (sectionId === 'flashcard') initFlashcards();
+            if (sectionId === 'quiz') initQuiz();
+            if (sectionId === 'phrases') renderPhrases();
+        }
+
+        // Hangul functions
+        function showHangulTab(tab) {
+            document.querySelectorAll('.hangul-tabs button').forEach(b => b.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            document.getElementById('hangul-vowels').style.display = tab === 'vowels' ? 'grid' : 'none';
+            document.getElementById('hangul-consonants').style.display = tab === 'consonants' ? 'grid' : 'none';
+            document.getElementById('hangul-double').style.display = tab === 'double' ? 'grid' : 'none';
+        }
+
+        function renderHangul() {
+            const vowelsContainer = document.getElementById('hangul-vowels');
+            const consonantsContainer = document.getElementById('hangul-consonants');
+            const doubleContainer = document.getElementById('hangul-double');
+            
+            vowelsContainer.innerHTML = hangulData.vowels.map(h => `
+                <div class="hangul-card" onclick="speakKorean('${h.letter}')">
+                    <div class="letter">${h.letter}</div>
+                    <div class="romanization">${h.romanization}</div>
+                    <div class="example">${h.example}</div>
+                </div>
+            `).join('');
+            
+            consonantsContainer.innerHTML = hangulData.consonants.map(h => `
+                <div class="hangul-card" onclick="speakKorean('${h.letter}')">
+                    <div class="letter">${h.letter}</div>
+                    <div class="romanization">${h.romanization}</div>
+                    <div class="example">${h.example}</div>
+                </div>
+            `).join('');
+            
+            doubleContainer.innerHTML = hangulData.double.map(h => `
+                <div class="hangul-card" onclick="speakKorean('${h.letter}')">
+                    <div class="letter">${h.letter}</div>
+                    <div class="romanization">${h.romanization}</div>
+                    <div class="example">${h.example}</div>
+                </div>
+            `).join('');
+        }
+
+        // Vocabulary functions
+        function renderVocabCategories() {
+            const container = document.getElementById('vocab-categories');
+            container.innerHTML = Object.entries(vocabularyData).map(([key, cat]) => `
+                <div class="category-card ${key === currentVocabCategory ? 'active' : ''}" 
+                     onclick="selectVocabCategory('${key}')">
+                    <i class="fas ${cat.icon}"></i>
+                    <h3>${cat.name}</h3>
+                    <p>${cat.words.length} từ</p>
+                </div>
+            `).join('');
+            
+            renderVocabList();
+        }
+
+        function selectVocabCategory(category) {
+            currentVocabCategory = category;
+            renderVocabCategories();
+        }
+
+        function renderVocabList() {
+            const container = document.getElementById('vocab-list');
+            const words = vocabularyData[currentVocabCategory].words;
+            
+            container.innerHTML = words.map(w => `
+                <div class="vocab-card" onclick="speakKorean('${w.korean}'); learnWord();">
+                    <div class="korean">${w.korean}</div>
+                    <div class="info">
+                        <h4>${w.meaning}</h4>
+                        <p>${w.romanization}</p>
+                    </div>
+                    <div class="speaker">
+                        <i class="fas fa-volume-up"></i>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function learnWord() {
+            stats.wordsLearned++;
+            localStorage.setItem('wordsLearned', stats.wordsLearned);
+            updateStats();
+        }
+
+        // Flashcard functions
+        function initFlashcards() {
+            flashcardWords = [];
+            Object.values(vocabularyData).forEach(cat => {
+                flashcardWords.push(...cat.words);
+            });
+            shuffleArray(flashcardWords);
+            flashcardWords = flashcardWords.slice(0, 20);
+            currentFlashcardIndex = 0;
+            document.getElementById('fc-total').textContent = flashcardWords.length;
+            updateFlashcard();
+        }
+
+        function updateFlashcard() {
+            const word = flashcardWords[currentFlashcardIndex];
+            document.getElementById('fc-korean').textContent = word.korean;
+            document.getElementById('fc-meaning').textContent = word.meaning;
+            document.getElementById('fc-roman').textContent = word.romanization;
+            document.getElementById('fc-current').textContent = currentFlashcardIndex + 1;
+            document.getElementById('flashcard').classList.remove('flipped');
+        }
+
+        function flipCard() {
+            document.getElementById('flashcard').classList.toggle('flipped');
+            speakKorean(flashcardWords[currentFlashcardIndex].korean);
+        }
+
+        function nextCard() {
+            if (currentFlashcardIndex < flashcardWords.length - 1) {
+                currentFlashcardIndex++;
+                updateFlashcard();
+            }
+        }
+
+        function prevCard() {
+            if (currentFlashcardIndex > 0) {
+                currentFlashcardIndex--;
+                updateFlashcard();
+            }
+        }
+
+        // Quiz functions
+        function initQuiz() {
+            quizQuestions = [];
+            const allWords = [];
+            Object.values(vocabularyData).forEach(cat => {
+                allWords.push(...cat.words);
+            });
+            
+            shuffleArray(allWords);
+            
+            for (let i = 0; i < 10 && i < allWords.length; i++) {
+                const correctWord = allWords[i];
+                const options = [correctWord.meaning];
+                
+                while (options.length < 4) {
+                    const randomWord = allWords[Math.floor(Math.random() * allWords.length)];
+                    if (!options.includes(randomWord.meaning)) {
+                        options.push(randomWord.meaning);
+                    }
+                }
+                
+                shuffleArray(options);
+                
+                quizQuestions.push({
+                    korean: correctWord.korean,
+                    correct: correctWord.meaning,
+                    options: options
+                });
+            }
+            
+            currentQuizIndex = 0;
+            quizScore = 0;
+            document.getElementById('quiz-result').style.display = 'none';
+            document.getElementById('quiz-question').style.display = 'block';
+            renderQuizQuestion();
+        }
+
+        function renderQuizQuestion() {
+            const question = quizQuestions[currentQuizIndex];
+            document.getElementById('quiz-question-num').textContent = currentQuizIndex + 1;
+            document.getElementById('quiz-progress').style.width = ((currentQuizIndex + 1) / quizQuestions.length * 100) + '%';
+            
+            document.getElementById('quiz-question').innerHTML = `
+                <div class="korean">${question.korean}</div>
+                <div class="quiz-options">
+                    ${question.options.map(opt => `
+                        <div class="quiz-option" onclick="selectAnswer(this, '${opt}', '${question.correct}')">${opt}</div>
+                    `).join('')}
+                </div>
+            `;
+        }
+
+        function selectAnswer(element, selected, correct) {
+            const options = document.querySelectorAll('.quiz-option');
+            options.forEach(opt => opt.style.pointerEvents = 'none');
+            
+            if (selected === correct) {
+                element.classList.add('correct');
+                quizScore++;
+            } else {
+                element.classList.add('wrong');
+                options.forEach(opt => {
+                    if (opt.textContent === correct) {
+                        opt.classList.add('correct');
+                    }
+                });
+            }
+            
+            setTimeout(() => {
+                if (currentQuizIndex < quizQuestions.length - 1) {
+                    currentQuizIndex++;
+                    renderQuizQuestion();
+                } else {
+                    showQuizResult();
+                }
+            }, 1500);
+        }
+
+        function showQuizResult() {
+            document.getElementById('quiz-question').style.display = 'none';
+            
+            if (quizScore > stats.quizHighScore) {
+                stats.quizHighScore = quizScore;
+                localStorage.setItem('quizHighScore', stats.quizHighScore);
+                updateStats();
+            }
+            
+            let message = '';
+            if (quizScore === 10) {
+                message = '🎉 Tuyệt vời! Bạn hoàn hảo!';
+            } else if (quizScore >= 8) {
+                message = '👏 Xuất sắc! Tiếp tục phát huy!';
+            } else if (quizScore >= 6) {
+                message = '👍 Khá tốt! Cố gắng thêm nhé!';
+            } else if (quizScore >= 4) {
+                message = '💪 Cần luyện tập thêm!';
+            } else {
+                message = '📚 Hãy học lại từ vựng nhé!';
+            }
+            
+            document.getElementById('quiz-result').innerHTML = `
+                <div class="quiz-result">
+                    <h2>Kết quả</h2>
+                    <div class="score">${quizScore}/10</div>
+                    <div class="message">${message}</div>
+                    <button class="btn-restart" onclick="initQuiz()">
+                        <i class="fas fa-redo"></i> Làm lại
+                    </button>
+                </div>
+            `;
+            document.getElementById('quiz-result').style.display = 'block';
+        }
+
+        // Phrases functions
+        function showPhraseCategory(category) {
+            currentPhraseCategory = category;
+            document.querySelectorAll('.phrase-cat-btn').forEach(b => b.classList.remove('active'));
+            event.target.classList.add('active');
+            renderPhrases();
+        }
+
+        function renderPhrases() {
+            const container = document.getElementById('phrase-list');
+            const phrases = phrasesData[currentPhraseCategory];
+            
+            container.innerHTML = phrases.map(p => `
+                <div class="phrase-card">
+                    <div>
+                        <div class="korean">${p.korean}</div>
+                        <div class="romanization">${p.romanization}</div>
+                        <div class="meaning">${p.meaning}</div>
+                    </div>
+                    <button class="play-btn" onclick="speakKorean('${p.korean}')">
+                        <i class="fas fa-play"></i>
+                    </button>
+                </div>
+            `).join('');
+        }
+
+        // Text-to-speech
+        function speakKorean(text) {
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = 'ko-KR';
+            utterance.rate = 0.8;
+            speechSynthesis.speak(utterance);
+        }
+
+        // Helper functions
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+        }
+
+        function showAchievement() {
+            document.getElementById('overlay').classList.add('show');
+            document.getElementById('achievement').classList.add('show');
+        }
+
+        function hideAchievement() {
+            document.getElementById('overlay').classList.remove('show');
+            document.getElementById('achievement').classList.remove('show');
+        }
+
+        // Floating hearts animation
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.innerHTML = '💕';
+            heart.style.position = 'fixed';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.top = '100vh';
+            heart.style.fontSize = (Math.random() * 20 + 10) + 'px';
+            heart.style.opacity = Math.random();
+            heart.style.pointerEvents = 'none';
+            heart.style.zIndex = '9999';
+            heart.style.animation = 'floatUp 4s linear forwards';
+            document.body.appendChild(heart);
+            
+            setTimeout(() => heart.remove(), 4000);
+        }
+
+        // Add float animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes floatUp {
+                to {
+                    transform: translateY(-100vh) rotate(360deg);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Create hearts periodically
+        setInterval(createHeart, 3000);
+
+        // Track study time
+        setInterval(() => {
+            stats.studyTime++;
+            localStorage.setItem('studyTime', stats.studyTime);
+            updateStats();
+        }, 60000);
+
+        // Initialize
+        checkStreak();
+        renderHangul();
+    </script>
+</body>
+</html>
